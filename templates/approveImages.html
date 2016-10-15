@@ -1,0 +1,117 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Approve</title>
+</head>
+<style type="text/css">
+	body{
+		text-align: center;
+	}
+	.container{
+		width: 60%;
+		margin: auto;
+	}
+	.submit{
+		width: 100%;
+		text-align: center;
+	}
+	.imagecontainer{
+		margin-top: 5px;
+		margin-bottom: 5px;
+		position: relative;
+		overflow: hidden;
+		border: 1px solid black;
+	}
+	.overlay{
+		position: absolute;
+		z-index: 99;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		background-image: url("{% static 'success.png' %}");
+		background-repeat: no-repeat;
+		background-position: center;
+		background-color: rgba(0,0,0,0.7);
+		cursor: pointer;
+	}
+	.photo{
+		width: 100%;
+		/*margin: auto;*/
+		cursor: pointer;
+	}
+</style>
+<body>
+	<div class="container" id="gallerycontainer">
+		{% for image in images %}
+		<div class="imagecontainer">
+			<img class="photo" src="{{ image.url }}">
+			<p style="display:none">{{ image.id }}</p>
+			<div></div>
+		</div>
+		{% endfor %}
+	</div>
+	<div class="submit">
+		<button id="approveButton">Approve Selected</button>
+	</div>
+</body>
+<script type="text/javascript">
+	var approveButton = document.getElementById('approveButton');
+	var imageDivs = document.getElementById('gallerycontainer');
+	var selectedId = new Array();
+	var httpRequest;
+	imageDivs.addEventListener("click",selectMe);
+	approveButton.addEventListener("click",handleApproval);
+	function handleApproval(e){
+		var images = document.getElementById('gallerycontainer').children;
+		var imageArray = new Array();
+		for (i=0;i<images.length;i++){
+			var imageTag = images[i].children;
+			var imageObject = new Object();
+			imageObject.imageId = imageTag[1].innerHTML;
+			if(images[i].selected)
+				imageObject.selected = true;
+			else
+				imageObject.selected = false;
+			imageArray.push(imageObject);
+		}
+		imageJson = new Object();
+		imageJson.imagearray = imageArray;
+		stringJson = JSON.stringify(imageJson);
+		httpRequest = new XMLHttpRequest();
+		httpRequest.onreadystatechange = responseHandler;		
+		httpRequest.open('POST',"/gallery/",true);
+		httpRequest.setRequestHeader('content-type','application/json');
+		httpRequest.send(stringJson);
+	}
+
+	function responseHandler(){
+		if(httpRequest.readyState == XMLHttpRequest.DONE){
+			var response = JSON.parse(httpRequest.responseText);
+			if(response.status)
+				alert("true");
+			else
+				alert("false");
+		}
+	}
+	function selectMe(e){
+		var image = e.target;
+		if(image.tagName=='IMG'){
+			imageDiv = image.parentNode.children;
+			image.parentNode.selected = true;
+			imageDiv[2].classList.toggle('overlay');
+			var imageId = imageDiv[1].innerHTML;
+			selectedId.push(imageId);
+		}
+		if(image.tagName=='DIV'){
+			
+			if(image.parentNode.children.length==3){
+				if(image.parentNode.children[1].tagName=='P'){
+					image.parentNode.children[2].classList.toggle('overlay');
+					image.parentNode.selected = false;
+				}
+			}
+		}
+	}
+</script>
+</html>

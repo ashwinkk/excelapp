@@ -1,0 +1,179 @@
+body{
+	height: 100%;
+	margin: 0;
+	font-family: sans-serif;
+	background-color: black;
+}
+
+#event,#logout{
+	color: aquamarine;
+}
+
+#replytext{
+	color: white;
+}
+
+.container{
+	display: block;
+	background-color: #2b4b5b;
+}
+
+h1{
+	margin: 0;
+}
+
+.btn,btn:visited{
+	cursor: pointer;
+	margin: 10px 0px 10px 0px;
+	background-color: cornflowerblue;
+	border: 1px solid;
+	border-color: cornflowerblue;
+	color: white;
+	display: block;
+	padding: 10px;
+	text-align: center;
+	border-radius: 5px;	
+	width: 50px;
+	transition: background 0.2s;
+}
+
+.btn:hover{
+	cursor: pointer;
+	background-color: white;
+	text-decoration: none;
+	color: black;
+}
+
+.header{
+	width: 100%;
+    display: block;
+    line-height: 100px;
+    height: 100px;
+    box-shadow: 1px 1px 5px gray;
+    display: flex;
+    background-color: #2b4b5b;
+}
+
+.header h1{
+	margin: auto;
+	color: wheat;
+}
+
+.chatspace{
+	overflow: scroll;
+	height: 500px;
+	margin-bottom: 10px;
+	overflow-x: hidden;
+	border-bottom: 1px solid black;
+	background-image: url('chatbk.jpg');
+	z-index: 0;
+	background-position: center;
+	background-size: contain;
+}
+
+div.chatspace>div>h2{
+	font-weight: normal;
+	margin: 5px 0px 5px 0px;
+}
+
+div.chatspace>div>h1{
+	font-weight: normal;
+	margin: 5px 0px 5px 0px;
+}
+
+div.chatspace>div>span{
+	display: block;
+	margin-bottom: 5px;
+}
+
+div.chatspace>div>a,div.chatspace>div>a:visited{
+	cursor: pointer;
+	margin: 10px 0px 10px 0px;
+	background-color: cornflowerblue;
+	border: 1px solid;
+	border-color: cornflowerblue;
+	color: white;
+	display: block;
+	padding: 10px;
+	text-align: center;
+	border-radius: 5px;	
+	width: 50px;
+}
+
+div.chatspace>div>a:hover{
+	cursor: pointer;
+	background-color: white;
+	text-decoration: none;
+	color: black;	
+}
+
+div.actions{
+	width: 80%;
+	margin: auto;
+	padding-bottom: 20px;
+}
+
+.reply{
+	display: flex;
+}
+
+.reply a{
+	opacity: 0;
+	transition: opacity 0.5s;
+}
+
+.reply a:hover{
+	
+}
+
+.inputs{
+	flex-grow: 2;
+}
+
+.inputs textarea{
+	width: 50%;
+}
+
+
+.inputs a:hover{
+	
+}
+
+.message{
+	width: 80%;
+	margin: auto;
+	position: relative;
+	background-color: white;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 10px;
+	display: block;
+	box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14),
+	              0 1px 8px 0 rgba(0, 0, 0, 0.12),
+                  0 3px 3px -2px rgba(0, 0, 0, 0.4);
+
+}
+
+.message p:first{
+	margin: 0;
+	font-size: 30px;
+	color: black;
+}
+.messagebox{
+	width: 100%;
+	height: 100px;
+}
+
+.replyButton{
+	display: block;
+	margin-top: 5px;
+}
+
+.footer{
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	width: 100%;
+	color: white;
+	background-color: black;
+}

@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chat</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'styleadminchat.css' %}">
+</head>
+<body onload="loaded()">
+	<div class="header">
+		<a id="event" style="margin-left:24px">image{{ event }}</a>
+		<h1 id="user" style="text-align:center;">{{ user }}</h1>
+		<a style="margin-right:24px;cursor:pointer;" id="logout">Logout</a>
+	</div>
+	<div class="container" id="container">
+		<div id="chatspace" class="chatspace" style="position:relative;">
+		</div>
+		<div class="actions">
+			<div class="reply">
+				<p id="replytext"></p>
+				<a class="btn" id="closereply" style="margin-left:16px">Close</a>
+			</div>
+			<div style="display:flex;" class="inputs">
+				<textarea name="sendmessage" id="sendbox"></textarea>
+				<a class="btn" id="sendbutton" style="margin-left:16px">Send</a>				
+			</div>
+		</div>
+	</div>
+	<!-- <div class="footer">
+		<span>Excel&copyright2016</span>
+	</div> -->
+	
+	<script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyCs3ntC8MiNlD7K9zGdPt-mrP7MrfPTCNY",
+	    authDomain: "competions-15d60.firebaseapp.com",
+	    databaseURL: "https://competions-15d60.firebaseio.com",
+	    storageBucket: "competions-15d60.appspot.com",
+	  };
+	  firebase.initializeApp(config);
+	</script>
+	<script type="text/javascript" src="{% static 'chat.js' %}"></script>
+</body>
+</html>
